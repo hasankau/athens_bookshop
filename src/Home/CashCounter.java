@@ -1,0 +1,1308 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Home;
+
+import DBClasses.DB_cash;
+import DBClasses.DB_invoice;
+import DBClasses.DB_query;
+import DBClasses.DB_query_subtypes;
+import DBClasses.java_connect;
+import Data.Cash;
+import Data.Item;
+import UIDesign.PopupFrame;
+import UIDesign.Theme;
+//import com.sun.javafx.geom.Vec2d;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.Writer;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.text.StyledDocument;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+
+/**
+ *
+ * @author HASANKA
+ */
+public class CashCounter extends PopupFrame implements KeyListener{
+
+    Home cashier = null;
+    DBClasses.DB_query_subtypes db = new DB_query_subtypes();
+
+    /**
+     * Creates new form PopupView
+     *
+     * @param home
+     * @param cashier
+     * @param item
+     * @param table
+     */
+    public CashCounter(Home cashier) {
+        this();
+        tp.setSize(1000, 1000);
+        this.cashier = cashier;
+        setSize(cashier.getSize());
+        setLocationRelativeTo(cashier);
+        setVisible(true);
+        
+        
+        Vector v = db1.getYesterDayCash();
+        
+        drw.setText(v.get(1).toString());
+        
+        
+        t5000.addKeyListener(this);
+        t2000.addKeyListener(this);
+        t1000.addKeyListener(this);
+        t500.addKeyListener(this);
+        t100.addKeyListener(this);
+        t50.addKeyListener(this);
+        t20.addKeyListener(this);
+        t10.addKeyListener(this);
+        t5.addKeyListener(this);
+        t2.addKeyListener(this);
+        t1.addKeyListener(this);
+        totl.addKeyListener(this);
+        
+        
+            }
+
+    public CashCounter() {
+        initComponents();
+    }
+    
+    
+    
+    
+    
+    
+    JTextPane tp =  new JTextPane();
+    
+    private void print() {
+        
+        
+        
+        try {
+            
+            if(b){
+            
+            Vector<String> v = db1.getAll();
+            
+            StyledDocument doc = tp.getStyledDocument();
+            
+                            doc.insertString(0, "Drawyer Opening Balance :"+ drw.getText()+"\n", null);
+                            doc.insertString(0, "---------------------------"+"\n", null);
+                            doc.insertString(0, "Drawyer Expenses :"+ ex.getText()+"\n", null);
+                            doc.insertString(0, "---------------------------"+"\n", null);
+                            doc.insertString(0, "Safe Opening Balance :"+ so.getText()+"\n", null);
+                            doc.insertString(0, "---------------------------"+"\n", null);
+                            doc.insertString(0, "Safe Diposits :"+ sd.getText()+"\n", null);
+                            doc.insertString(0, "---------------------------"+"\n", null);
+                            doc.insertString(0, "Safe Expenses :"+ se.getText()+"\n", null);
+                            doc.insertString(0, "---------------------------"+"\n", null);
+                            doc.insertString(0, "Safe Cloisng :"+ sc.getText()+"\n", null);
+                            doc.insertString(0, "---------------------------"+"\n", null);
+                            doc.insertString(0, "Counter Closing :"+ cc.getText()+"\n", null);
+                            doc.insertString(0, "---------------------------"+"\n", null);
+                            doc.insertString(0, "Difference :"+ dif.getText(), null);
+
+            PrintService service = PrintServiceLookup.lookupDefaultPrintService();
+    tp.print(null, null, false, service, null, false);
+//            b.flush();
+    
+        }
+            
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jButton6 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        t5000 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        t2000 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        t1000 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        t500 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        t100 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        t50 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        t20 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        t10 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        t5 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        t2 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        t1 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        totl = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        drw = new javax.swing.JLabel();
+        clo = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        cc = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        dif = new javax.swing.JLabel();
+        ex = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        so = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        sc = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        sd = new javax.swing.JLabel();
+        se = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        jButton8 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 153)));
+
+        jButton6.setBackground(new java.awt.Color(255, 153, 0));
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Cancel");
+        jButton6.setContentAreaFilled(false);
+        jButton6.setOpaque(true);
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(0, 153, 153));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/white/Cash Register_24px.png"))); // NOI18N
+        jButton3.setContentAreaFilled(false);
+        jButton3.setOpaque(true);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton3MouseExited(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/white/Safe In_24px.png"))); // NOI18N
+        jLabel1.setText("Cash Counter");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setLayout(new java.awt.GridLayout(12, 2, 5, 5));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("5000");
+        jPanel3.add(jLabel10);
+
+        t5000.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t5000.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t5000.setText("0");
+        t5000.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t5000ActionPerformed(evt);
+            }
+        });
+        t5000.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t5000KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t5000);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("2000");
+        jPanel3.add(jLabel8);
+
+        t2000.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t2000.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t2000.setText("0");
+        t2000.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t2000ActionPerformed(evt);
+            }
+        });
+        t2000.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t2000KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t2000);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("1000");
+        jPanel3.add(jLabel5);
+
+        t1000.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t1000.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t1000.setText("0");
+        t1000.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t1000ActionPerformed(evt);
+            }
+        });
+        t1000.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t1000KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t1000);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("500");
+        jPanel3.add(jLabel7);
+
+        t500.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t500.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t500.setText("0");
+        t500.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t500ActionPerformed(evt);
+            }
+        });
+        t500.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t500KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t500);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("100");
+        jPanel3.add(jLabel4);
+
+        t100.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t100.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t100.setText("0");
+        t100.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t100ActionPerformed(evt);
+            }
+        });
+        t100.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t100KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t100);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("50");
+        jPanel3.add(jLabel6);
+
+        t50.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t50.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t50.setText("0");
+        t50.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t50ActionPerformed(evt);
+            }
+        });
+        t50.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t50KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t50);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("20");
+        jPanel3.add(jLabel3);
+
+        t20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t20.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t20.setText("0");
+        jPanel3.add(t20);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("10");
+        jPanel3.add(jLabel9);
+
+        t10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t10.setText("0");
+        t10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t10ActionPerformed(evt);
+            }
+        });
+        t10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t10KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t10);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("5");
+        jPanel3.add(jLabel11);
+
+        t5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t5.setText("0");
+        t5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t5ActionPerformed(evt);
+            }
+        });
+        t5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t5KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t5);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("2");
+        jPanel3.add(jLabel12);
+
+        t2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t2.setText("0");
+        t2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t2ActionPerformed(evt);
+            }
+        });
+        t2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t2KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t2);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("1");
+        jPanel3.add(jLabel13);
+
+        t1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        t1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        t1.setText("0");
+        t1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t1ActionPerformed(evt);
+            }
+        });
+        t1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                t1KeyReleased(evt);
+            }
+        });
+        jPanel3.add(t1);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Total");
+        jPanel3.add(jLabel14);
+
+        totl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        totl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totl.setText("0.0");
+        jPanel3.add(totl);
+
+        jPanel4.setLayout(new java.awt.GridLayout(12, 1, 5, 5));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel15);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel16);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel17);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel18);
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel19);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel20);
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel21);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel22);
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel23);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel24);
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel25);
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel26);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Drawer Opening");
+
+        drw.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        drw.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        drw.setText("0.0");
+
+        clo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        clo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        clo.setText("0.0");
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel29.setText("Drawer Closing");
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel32.setText("Counter Balance");
+
+        cc.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cc.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        cc.setText("0.0");
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel34.setText("Difference");
+
+        dif.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        dif.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        dif.setText("0.0");
+
+        ex.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ex.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        ex.setText("0.0");
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel30.setText("Expenses");
+
+        so.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        so.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        so.setText("0.0");
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel31.setText("Safe Opening");
+
+        sc.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        sc.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        sc.setText("0.0");
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel36.setText("Safe Closing");
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel37.setText("Safe Diposits");
+
+        sd.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        sd.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        sd.setText("0.0");
+
+        se.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        se.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        se.setText("0.0");
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel38.setText("Safe Expenses");
+
+        jButton5.setBackground(new java.awt.Color(255, 153, 0));
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/white/Reset_24px.png"))); // NOI18N
+        jButton5.setText("Update");
+        jButton5.setContentAreaFilled(false);
+        jButton5.setOpaque(true);
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton5MouseExited(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setBackground(new java.awt.Color(255, 0, 102));
+        jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/white/Cancel_24px.png"))); // NOI18N
+        jButton7.setText("Delete");
+        jButton7.setContentAreaFilled(false);
+        jButton7.setOpaque(true);
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton7MouseExited(evt);
+            }
+        });
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        dateChooserCombo1.setFormat(2);
+
+        jButton8.setBackground(new java.awt.Color(0, 153, 153));
+        jButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/white/SEARCH_32x32-32.png"))); // NOI18N
+        jButton8.setContentAreaFilled(false);
+        jButton8.setOpaque(true);
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton8MouseExited(evt);
+            }
+        });
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)
+                        .addComponent(jButton5)))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ex, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(so, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)
+                            .addComponent(sc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(se, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(drw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jButton7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(dateChooserCombo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(4, 4, 4)
+                        .addComponent(drw, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel29)
+                        .addGap(5, 5, 5)
+                        .addComponent(clo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel30)
+                        .addGap(5, 5, 5)
+                        .addComponent(ex, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel31)
+                        .addGap(5, 5, 5)
+                        .addComponent(so, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel37)
+                        .addGap(5, 5, 5)
+                        .addComponent(sd, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel38)
+                        .addGap(8, 8, 8)
+                        .addComponent(se, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel36)
+                        .addGap(5, 5, 5)
+                        .addComponent(sc, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel32)
+                        .addGap(1, 1, 1)
+                        .addComponent(cc, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel34)
+                        .addGap(1, 1, 1)
+                        .addComponent(dif, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
+        setButtonOver(jButton6, Theme.btColorOrange);
+    }//GEN-LAST:event_jButton6MouseEntered
+
+    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
+        setButtonExit(jButton6, Theme.btColorOrangeExit);
+    }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+        setButtonOver(jButton3, Theme.btColorMouseOver);
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+        setButtonExit(jButton3, Theme.navColorSelect);
+    }//GEN-LAST:event_jButton3MouseExited
+    
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat sdft = new SimpleDateFormat("hh:mm:ss a");
+    
+        
+                
+    
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    DB_cash db1 = new DB_cash();
+        DB_invoice dbi = new DB_invoice();
+
+    
+    private void t1000KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1000KeyReleased
+        
+                
+    }//GEN-LAST:event_t1000KeyReleased
+
+    private void t1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t1000ActionPerformed
+        
+    }//GEN-LAST:event_t1000ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+
+        Cash c = new Cash();
+        
+        c.setDate(sdf.format(new Date()));
+        c.setTime(sdft.format(new Date()));
+        c.setFiveThousand(t5000.getText());
+        c.setTwoThousand(t2000.getText());
+        c.setThousand(t1000.getText());
+        c.setFiveHundred(t500.getText());
+        c.setHundred(t100.getText());
+        c.setFifty(t50.getText());
+        c.setTwenty(t20.getText());
+        c.setTen(t10.getText());
+        c.setFive(t5.getText());
+        c.setTwo(t2.getText());
+        c.setOne(t1.getText());
+        c.setTot(totl.getText());
+        c.setDrawyer(drw.getText());
+        c.setSafe("0");
+        c.setTotal(cc.getText());
+        c.setEx(ex.getText());
+        c.setDc(clo.getText());
+        c.setSc(sc.getText());
+        c.setSo(so.getText());
+        c.setSe(se.getText());
+        c.setDiff(dif.getText());
+        
+        db1.insertIntoItem(c);
+        
+                
+        Toolkit.getDefaultToolkit().beep();
+        
+        b = true;
+        
+        print();
+        
+        
+
+        
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        dispose();
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void t5000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t5000ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t5000ActionPerformed
+
+    private void t5000KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t5000KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t5000KeyReleased
+
+    private void t500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t500ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t500ActionPerformed
+
+    private void t500KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t500KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t500KeyReleased
+
+    private void t2000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t2000ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t2000ActionPerformed
+
+    private void t2000KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t2000KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t2000KeyReleased
+
+    private void t50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t50ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t50ActionPerformed
+
+    private void t50KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t50KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t50KeyReleased
+
+    private void t100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t100ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t100ActionPerformed
+
+    private void t100KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t100KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t100KeyReleased
+
+    private void t10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t10ActionPerformed
+
+    private void t10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t10KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t10KeyReleased
+
+    private void t5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t5ActionPerformed
+
+    private void t5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t5KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t5KeyReleased
+
+    private void t2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t2ActionPerformed
+
+    private void t2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t2KeyReleased
+
+    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t1ActionPerformed
+
+    private void t1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t1KeyReleased
+
+    
+    boolean b = false;
+    
+    
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        
+        
+        Cash c = new Cash();
+        
+        c.setDate(sdf.format(new Date()));
+        c.setTime(sdft.format(new Date()));
+        c.setFiveThousand(t5000.getText());
+        c.setTwoThousand(t2000.getText());
+        c.setThousand(t1000.getText());
+        c.setFiveHundred(t500.getText());
+        c.setHundred(t100.getText());
+        c.setFifty(t50.getText());
+        c.setTwenty(t20.getText());
+        c.setTen(t10.getText());
+        c.setFive(t5.getText());
+        c.setTwo(t2.getText());
+        c.setOne(t1.getText());
+        c.setTot(totl.getText());
+        c.setDrawyer(drw.getText());
+        c.setSafe("0");
+        c.setTotal(cc.getText());
+        c.setEx(ex.getText());
+        c.setDc(clo.getText());
+        c.setSc(sc.getText());
+        c.setSo(so.getText());
+        c.setSe(se.getText());
+        c.setDiff(dif.getText());
+        
+        db1.updateCash(c);
+                
+        Toolkit.getDefaultToolkit().beep();
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseEntered
+
+    private void jButton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseExited
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        db1.deleteCash(sdf.format(dateChooserCombo1.getSelectedDate().getTime()));
+        Toolkit.getDefaultToolkit().beep();
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseEntered
+
+    private void jButton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7MouseExited
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        
+        Cash c = db1.getcash(sdf.format(dateChooserCombo1.getSelectedDate().getTime()));
+        
+        
+        t5000.setText(c.getFiveThousand());
+        t2000.setText(c.getTwoThousand());
+        t1000.setText(c.getThousand());
+        t500.setText(c.getFiveHundred());
+        t100.setText(c.getHundred());
+        t50.setText(c.getFifty());
+        t20.setText(c.getTwenty());
+        t10.setText(c.getTen());
+        t5.setText(c.getFive());
+        t2.setText(c.getTwo());
+        t1.setText(c.getOne());
+        totl.setText(c.getTot());
+        drw.setText(c.getDrawyer());
+        so.setText(c.getSo());
+        cc.setText(c.getDc());
+        ex.setText(c.getEx());
+        clo.setText(c.getTotal());
+        sc.setText(c.getSc());
+        so.setText(c.getSo());
+        se.setText(c.getSe());
+        
+        
+        int a = Integer.parseInt(t5000.getText())*5000;
+        int b = Integer.parseInt(t2000.getText())*2000;
+        int c1 = Integer.parseInt(t1000.getText())*1000;
+        int d = Integer.parseInt(t500.getText())*500;
+        int e = Integer.parseInt(t100.getText())*100;
+        int g = Integer.parseInt(t50.getText())*50;
+        int h = Integer.parseInt(t20.getText())*20;
+        int i = Integer.parseInt(t10.getText())*10;
+        int j = Integer.parseInt(t5.getText())*5;
+        int k = Integer.parseInt(t2.getText())*2;
+        int l = Integer.parseInt(t1.getText())*1;
+        t1.getText();
+            
+
+        jLabel15.setText(a+"");
+        jLabel16.setText(b+"");
+        jLabel17.setText(c1+"");
+        jLabel18.setText(d+"");
+        jLabel19.setText(e+"");
+        jLabel20.setText(g+"");
+        jLabel21.setText(h+"");
+        jLabel22.setText(i+"");
+        jLabel23.setText(j+"");
+        jLabel24.setText(k+"");
+        jLabel25.setText(l+"");
+
+        
+        
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8MouseEntered
+
+    private void jButton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8MouseExited
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CashCounter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CashCounter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CashCounter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CashCounter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CashCounter().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cc;
+    private javax.swing.JLabel clo;
+    private datechooser.beans.DateChooserCombo dateChooserCombo1;
+    private javax.swing.JLabel dif;
+    private javax.swing.JLabel drw;
+    private javax.swing.JLabel ex;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel sc;
+    private javax.swing.JLabel sd;
+    private javax.swing.JLabel se;
+    private javax.swing.JLabel so;
+    private javax.swing.JTextField t1;
+    private javax.swing.JTextField t10;
+    private javax.swing.JTextField t100;
+    private javax.swing.JTextField t1000;
+    private javax.swing.JTextField t2;
+    private javax.swing.JTextField t20;
+    private javax.swing.JTextField t2000;
+    private javax.swing.JTextField t5;
+    private javax.swing.JTextField t50;
+    private javax.swing.JTextField t500;
+    private javax.swing.JTextField t5000;
+    private javax.swing.JLabel totl;
+    // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        int c = e.getKeyChar();
+        if (!(Character.isDigit(c))) {
+            e.consume();
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        
+    }
+
+    int tot = 0;
+    
+    @Override
+    public void keyReleased(KeyEvent evt) {
+        
+        if(((JTextField)evt.getSource()).getText().length()>0){
+            
+        int a = Integer.parseInt(t5000.getText())*5000;
+        int b = Integer.parseInt(t2000.getText())*2000;
+        int c = Integer.parseInt(t1000.getText())*1000;
+        int d = Integer.parseInt(t500.getText())*500;
+        int e = Integer.parseInt(t100.getText())*100;
+        int g = Integer.parseInt(t50.getText())*50;
+        int h = Integer.parseInt(t20.getText())*20;
+        int i = Integer.parseInt(t10.getText())*10;
+        int j = Integer.parseInt(t5.getText())*5;
+        int k = Integer.parseInt(t2.getText())*2;
+        int l = Integer.parseInt(t1.getText())*1;
+        t1.getText();
+            
+
+        jLabel15.setText(a+"");
+        jLabel16.setText(b+"");
+        jLabel17.setText(c+"");
+        jLabel18.setText(d+"");
+        jLabel19.setText(e+"");
+        jLabel20.setText(g+"");
+        jLabel21.setText(h+"");
+        jLabel22.setText(i+"");
+        jLabel23.setText(j+"");
+        jLabel24.setText(k+"");
+        jLabel25.setText(l+"");
+
+        
+        
+            int to = a+b+c+d+e+g+h+i+j+k+l;
+            
+            totl.setText(to+"");
+            cc.setText(to+"");
+            
+            int bal = Integer.parseInt(clo.getText())-to;
+            
+            dif.setText(bal+"");
+            
+        }
+            
+        
+    }
+}
